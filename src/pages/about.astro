@@ -1,0 +1,34 @@
+---
+import Layout from '../layouts/Page.astro';
+import { getAboutInformation } from '../lib/api';
+
+const seo = {
+  title: "Astro Minimal Starter",
+  description: "This is a starter repo for an blog built with Astro including open graph tags, canonical urls, RSS, sitemap support."
+}
+
+
+const aboutInfo =await getAboutInformation()
+
+const {description}=aboutInfo[0] 
+
+console.log(aboutInfo)
+---
+
+<Layout seo={seo}>
+    <div class="min-h-screen flex flex-col   items-center py-8">
+        <h1 class="text-3xl sm:text-5xl text-blue-900 font-extrabold py-4">Who is Thobo?</h1>
+        <div class="bg-white   rounded px-8 pt-6 pb-8 mb-4 max-w-4xl mx-auto">
+          <div class="flex flex-col sm:flex-row">
+            <div class="w-full sm:w-1/2">
+              <img class="w-full h-full object-cover mb-6 sm:mb-0" src="/assets/HeroImage.png" alt="Profile Image" />
+            </div>
+            <div class="w-full sm:w-1/2 sm:pl-8">
+             
+              <p class="mb-3">{description}</p>
+    
+            </div>
+          </div>
+        </div>
+      </div>
+</Layout>

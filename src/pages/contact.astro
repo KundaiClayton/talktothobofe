@@ -1,0 +1,65 @@
+---
+import { ContactUs } from '../components/Form';
+import FacebookIcon from '../components/icons/FacebookIcon.astro';
+import InstagramIcon from '../components/icons/InstagramIcon.astro';
+import LinkedInIcon from '../components/icons/LinkedInIcon.astro';
+import LocationIcon from '../components/icons/LocationIcon.astro';
+import MailIcon from '../components/icons/MailIcon.astro';
+import PhoneIcon from '../components/icons/PhoneIcon.astro';
+import TwitterIcon from '../components/icons/TwitterIcon.astro';
+import Layout from '../layouts/Page.astro';
+import { getContactInformation } from '../lib/api';
+
+const seo = {
+  title: "Astro Minimal Starter",
+  description: "This is a starter repo for an blog built with Astro including open graph tags, canonical urls, RSS, sitemap support."
+}
+
+const contactInfo=await  getContactInformation()
+
+console.log(contactInfo)
+ const {address,email,facebook,instagram, twitter,linkedIn,phone}=contactInfo[0]
+
+---
+
+<Layout seo={seo}>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
+      <h1 class="sm:text-5xl  text-3xl text-center text-blue-900 font-extrabold py-8">Contact Us</h1>
+      <p class="text-lg text-center mb-8">We would love to hear from you. Get in touch.</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div class="bg-blue-900 rounded-md p-8 text-white">
+          <h2 class="text-2xl font-semibold mb-6">Contact Information</h2>
+          <div class="flex items-center mb-6">
+            <PhoneIcon width="32px" height="32px" fill="red" />
+            <div class="ml-4">{phone}</div>
+          </div>
+          <div class="flex items-start mb-6">
+            <LocationIcon fill="red" width="24px" height="24px" />
+            <div class="ml-4">{address}</div>
+          </div>
+          <div class="flex items-center mb-6">
+            <MailIcon width="24px" height="24px" fill="red" />
+            <div class="ml-4">{email}</div>
+          </div>
+          <div class="flex items-center justify-center space-x-4">
+            <a href={facebook}>
+              <FacebookIcon />
+            </a>
+            <a href={instagram}>
+              <InstagramIcon />
+            </a>
+            <a href={twitter}>
+              <TwitterIcon />
+            </a>
+            <a href={linkedIn}>
+              <LinkedInIcon />
+            </a>
+          </div>
+        </div>
+        <div>
+          <ContactUs client:load />
+        </div>
+      </div>
+    </div>
+  </Layout>
+  

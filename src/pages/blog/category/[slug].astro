@@ -1,0 +1,38 @@
+---
+// Component Imports
+import Layout from '../../../layouts/Page.astro'
+import BlogPostPreview from '../../../components/BlogPostPreview.astro'
+
+import { getAllCategories, getAllCategoriesWithPosts } from '../../../lib/api.js';
+
+export async function getStaticPaths() {
+  const allCategoryData = await getAllCategoriesWithPosts();
+
+
+
+  return allCategoryData.map(category => ({params: { slug: category.slug.current }, props: {category}}));
+}
+
+const { category } = Astro.props;
+
+const seo = {
+  title: category.title,
+}
+---
+
+<Layout seo={seo}>
+  <div class="flex  flex-col text-center py-6 h-full "   >
+    <h1 class=" txt-3xl sm:text-5xl font-extrabold text-blue-900 py-8">{category.title}</h1>
+    {category.posts && category.posts.length > 0 ? (
+      category.posts.map((post, index) => (
+        <div>
+          <BlogPostPreview post={post} />
+        </div>
+      ))
+    ) : (
+      <div class="h-[60vh] text-xl text-gray-600">
+        No posts available yet
+      </div>
+    )}
+  </div>
+</Layout>

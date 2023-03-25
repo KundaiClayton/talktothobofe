@@ -1,0 +1,25 @@
+---
+import { getSanityImageURL, formatBlogPostDate } from '../utils/helpers.js'
+
+export interface Props {
+  post: any;
+
+}
+
+const { post} = Astro.props; 
+
+---
+
+<article  class={` rounded-sm text-center py-4  px-8 sm:text-left`}>
+
+    <a href={`/blog/${post.slug.current}`} class={`flex justify-between  shadow-lg`}>
+      {post.mainImage && <img  class="h-72 w-72" loading="lazy" src={getSanityImageURL(post.mainImage).url()} />}
+      <div class=" px-4 ">
+        <h1 class="text-blue-900 text-2xl pb-4 capitalize">{post.title}</h1>
+        <!-- <time class="publish-date ">{(post.publishedAt)}</time> -->
+        <p class="text-blue-900 capitalize">{post.excerpt}</p>
+      </div>
+     
+    </a>
+</article>
+

@@ -1,0 +1,16 @@
+---
+import Carousel from '../components/Carousel';
+import Layout from '../layouts/Page.astro';
+
+const seo = {
+  title: "Astro Minimal Starter",
+  description: "This is a starter repo for an blog built with Astro including open graph tags, canonical urls, RSS, sitemap support."
+}
+---
+
+<Layout seo={seo}>
+  <div class="text-center">
+<h2  class="text-blue-900 font-bold  txt-3xl sm:text-6xl px-8 py-8">Gallery</h2>
+  <Carousel client:load/>
+  </div>
+</Layout>

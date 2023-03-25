@@ -1,0 +1,53 @@
+---
+import { getContactInformation } from "../lib/api";
+import FacebookIcon from "./icons/FacebookIcon.astro";
+import InstagramIcon from "./icons/InstagramIcon.astro";
+import LinkedInIcon from "./icons/LinkedInIcon.astro";
+import TwitterIcon from "./icons/TwitterIcon.astro";
+const contactInfo=await  getContactInformation()
+
+console.log(contactInfo)
+ const {address,email,facebook,instagram, twitter,linkedIn,phone}=contactInfo[0]
+
+---
+
+<div class="bg-white border-t-2  bottom-0  ">
+  <div class="container  px-4 py-8 flex flex-wrap justify-center  items-center align-middle">
+    <section class="sm:w-auto mb-8 sm:mb-0 mx-auto">
+      <div>
+        <h3 class="mb-2 text-2xl font-bold text-black">Talk To Thobo</h3>
+        <div class="w-48">
+          House of Success
+          <br />
+          28 Second Avenue
+          <br />
+          Norwood, Mthatha
+          <br />
+          5099
+        </div>
+      </div>
+    </section>
+    <section class="w-full sm:w-auto mb-8 sm:mb-0 mx-auto flex flex-col justify-center">
+      <h3 class="mb-2 text-2xl font-bold text-black text-center">Connect with Thobo</h3>
+      <div class="mt-4 flex items-center justify-center sm:justify-start space-x-4">
+        <a href={facebook}>
+          <FacebookIcon />
+        </a>
+        <a href={instagram}>
+          <InstagramIcon />
+        </a>
+        <a href={twitter}>
+          <TwitterIcon />
+        </a>
+        <a href={linkedIn}>
+          <LinkedInIcon />
+        </a>
+      </div>
+    </section>
+    <section class=" sm:w-auto text-center mx-auto">
+      <div>
+        <img src="/assets/Logos.png" alt="Logo" class="h-20 w-20 object-contain" />
+      </div>
+    </section>
+  </div>
+</div>

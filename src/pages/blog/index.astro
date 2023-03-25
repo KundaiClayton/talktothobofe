@@ -1,0 +1,44 @@
+---
+// Component Imports
+import Layout from '../../layouts/Page.astro'
+import BlogPostPreview from '../../components/BlogPostPreview.astro';
+
+import { getAllCategoriesWithPosts, getAllPosts } from '../../lib/api.js';
+import Container from '../../components/Container.astro';
+
+
+const seo = {
+  title: 'Example Blog',
+  description: 'This is a starter repo for an blog built with Astro including open graph tags, canonical urls, RSS, sitemap support.'
+}
+
+
+
+const allPostData = await getAllPosts();
+const allCategories= await getAllCategoriesWithPosts();
+
+
+
+---
+
+<Layout seo={seo}>
+
+  <Container>
+    <article class="py-6 px-8  h-[80vh] overflow-scroll">
+      <h1 class="text-center text-blue-900 sm:text-5xl py-2  txt-3xl">Blogs</h1>
+     
+      <section class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3  gap-2">
+        {allCategories.map((post) =>
+      <div class="shadow-xl  w-full h-72 text-center align-center mx-4  flex flex-col justify-center">
+          <h1 class="text-blue-900 text-xl font-bold sm:text-2xl  py-4">{post.title}</h1>
+          <p  class="text-blue-900 text-lg  py-4">{post.description}</p>
+          <a href={`/blog/category/${post.slug.current}`}>
+            <button class="bg-red-900 text-white py-2 px-4 rounded-md">View Blogs</button></a>
+        </div>
+      
+      )}
+      </section>
+    </article>
+  </Container>
+</Layout>
+

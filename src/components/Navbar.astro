@@ -1,0 +1,29 @@
+---
+
+// import Logo from "../components/Logo.astro";
+export interface Props {
+  narrow?: boolean;
+}
+
+const {narrow} = Astro.props;
+---
+
+<nav class="bg-white shadow">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <div class="flex-shrink-0">
+        <div class="h-8 w-auto" >  <a href="/">Thobo</a></div>
+      </div>
+      <div class="hidden md:block">
+        <div class="ml-10 flex items-baseline space-x-4">
+          <a class="text-gray-600 hover:text-gray-900 focus:text-gray-900" href="/" aria-label="Home">Home</a>
+          <a class="text-gray-600 hover:text-gray-900 focus:text-gray-900" href="/about" aria-label="About">About</a>
+          <a class="text-gray-600 hover:text-gray-900 focus:text-gray-900" href="/contact" aria-label="Services">Contact</a>
+          <a class="text-gray-600 hover:text-gray-900 focus:text-gray-900" href="/about" aria-label="About">Gallery</a>
+          <a class="text-gray-600 hover:text-gray-900 focus:text-gray-900" href="/contact" aria-label="Contact">Contact</a>
+          <a class="text-gray-600 hover:text-gray-900 focus:text-gray-900" href="/blog" aria-label="Blog">Blog</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,46 @@
+---
+import Layout from '../layouts/Page.astro';
+
+const seo = {
+  title: "Astro Minimal Starter",
+  description: "This is a starter repo for an blog built with Astro including open graph tags, canonical urls, RSS, sitemap support."
+}
+
+const pricingOptions = [
+  {
+    title: "Consultations",
+    description: "A complete program with one client or a group of clients would be covered over a period of either three (3) six (6) months. They would be spread over the year as weekly or fortnightly sessions. The actual cost for each coaching program will be calculated based on the number of people enrolled and a quotation submitted on request"
+  },
+  {
+    title: "Workshops and Seminars",
+    description: "Special workshops, seminars and conferences are conducted as per client’s request and costs according to the number of participants and days taken."
+  },
+  {
+    title: "Travelling",
+    description: "Travelling costs are based based on the rate offered by the institution rendering services to and no less than the SARS rate per km."
+  }
+];
+---
+
+<Layout seo={seo}>
+  <div class="text-center">
+    <h1 class="text-blue-900 text-3xl py-8  txt-3xl sm:text-5xl">Book <span class="text-red-900">A</span> Session</h1>
+    <p class="text-xl text-blue-800 text-underline l">Session Duration and Cost</p>
+
+    <div class="grid gap-4 md:grid-cols-3 mt-8 sm:py-8">
+      {pricingOptions.map((option) => (
+        <div class="shadow-md p-8 rounded-md">
+          <h3 class="text-2xl font-bold mb-4 text-blue-600">{option.title}</h3>
+          <p class="text-gray-600">{option.description}</p>
+        </div>
+      ))}
+    </div>
+
+    <a href="/contact" class="no-underline">
+      <button class="bg-red-900 text-white font-bold py-2 px-4 rounded my-8">
+        Request a Quote
+      </button>
+    </a>
+    
+  </div>
+</Layout>

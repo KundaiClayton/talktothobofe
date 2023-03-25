@@ -1,0 +1,48 @@
+---
+
+import SanityPortableText from './SanityPortableText.astro'
+import { getSanityImageURL, formatBlogPostDate } from '../utils/helpers.js'
+import Container from './Container.astro';
+
+export interface Props {
+  post: any;
+
+}
+
+const { post} = Astro.props;
+
+
+---
+
+<Container>
+  <article class="py-4 px-4 sm:p-8 flex flex-col ">
+    <div >
+      <h1 class="font-bold sm:text-3xl text-blue-900 text-center sm:py-12 py-4">
+        {post.title}
+      </h1>
+      {post.mainImage && (
+        <div class="h-96 w-full py-8">
+        <img
+          class="h-full  w-full object-cover mb-8  "
+          loading="lazy"
+          src={getSanityImageURL(post.mainImage).url()}
+          alt={post.title}
+        /></div>
+      )}
+<div class="px-8">
+  <SanityPortableText portableText={post.body} />
+</div>
+     
+
+      <div class="flex justify-end mt-8">
+        <a href={`/blog`}>
+          <button
+            class="bg-transparent hover:bg-red-900 text-red-900 font-semibold hover:text-white py-2 px-4 border border-red-900 hover:border-red-900 rounded"
+          >
+            back to list
+          </button>
+        </a>
+      </div>
+    </div>
+  </article>
+</Container>
